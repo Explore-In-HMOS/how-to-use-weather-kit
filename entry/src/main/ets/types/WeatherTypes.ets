@@ -82,11 +82,11 @@ export interface LocationInfo {
 export interface CurrentWeatherCardProps {
   temperature: number;
   condition: WeatherCondition;
-  feelsLike: number;              // Use -999 for "not provided"
-  humidity: number;               // Use -1 for "not provided"
-  windSpeed: number;              // Use -1 for "not provided"
-  uvIndex: number;                // Use -1 for "not provided"
-  location: string;               // Use empty string for "not provided"
+  feelsLike: number;              // Use -999 for 'not provided'
+  humidity: number;               // Use -1 for 'not provided'
+  windSpeed: number;              // Use -1 for 'not provided'
+  uvIndex: number;                // Use -1 for 'not provided'
+  location: string;               // Use empty string for 'not provided'
   showDetails: boolean;           // Show humidity, wind, UV row
   temperatureUnit: 'C' | 'F';     // Temperature unit
   // Note: customIcons handled separately due to ArkTS @Prop limitations
@@ -100,7 +100,7 @@ export interface ForecastCardProps {
   showPrecipitation?: boolean;    // Show precipitation chance (default: false)
   temperatureUnit?: 'C' | 'F';    // Temperature unit
   // Note: customIcons handled separately due to ArkTS @Prop limitations
-  title?: string;                 // Card title (default: "Forecast")
+  title?: string;                 // Card title (default: 'Forecast')
 }
 
 // Props for TTSAnnouncementCard component
@@ -110,7 +110,7 @@ export interface TTSAnnouncementCardProps {
   words: string[];                // Pre-split words for highlighting (default: [])
   currentWordIndex: number;       // Current word being spoken (default: 0)
   showProgress: boolean;          // Show speech progress highlighting (default: true)
-  title: string;                  // Card title (default: "Weather Announcement")
+  title: string;                  // Card title (default: 'Weather Announcement')
 }
 
 // Custom icons for weather details
@@ -124,9 +124,9 @@ export interface WeatherDetailIcons {
 // Note: ArkTS @Prop requires default values instead of optional parameters
 // Use sentinel values: -1 for numeric values, empty object for customIcons
 export interface WeatherDetailsRowProps {
-  humidity: number;               // Use -1 for "not provided"
-  windSpeed: number;              // Use -1 for "not provided"
-  uvIndex: number;                // Use -1 for "not provided"
+  humidity: number;               // Use -1 for 'not provided'
+  windSpeed: number;              // Use -1 for 'not provided'
+  uvIndex: number;                // Use -1 for 'not provided'
   temperatureUnit: 'C' | 'F';
   showHumidity: boolean;          // Default: true
   showWind: boolean;              // Default: true

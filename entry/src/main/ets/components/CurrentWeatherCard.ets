@@ -25,10 +25,10 @@ export struct CurrentWeatherCard {
   @Prop condition: WeatherCondition;
   
   // Optional props with defaults (ArkTS requires default values instead of optional syntax)
-  @Prop feelsLike: number = -999; // Use sentinel value for "not provided"
-  @Prop humidity: number = -1; // Use sentinel value for "not provided"
-  @Prop windSpeed: number = -1; // Use sentinel value for "not provided"
-  @Prop uvIndex: number = -1; // Use sentinel value for "not provided"
+  @Prop feelsLike: number = -999; // Use sentinel value for 'not provided'
+  @Prop humidity: number = -1; // Use sentinel value for 'not provided'
+  @Prop windSpeed: number = -1; // Use sentinel value for 'not provided'
+  @Prop uvIndex: number = -1; // Use sentinel value for 'not provided'
   @Prop location: string = '';
   @Prop showDetails: boolean = true;
   @Prop temperatureUnit: 'C' | 'F' = 'C';

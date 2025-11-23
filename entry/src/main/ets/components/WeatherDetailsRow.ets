@@ -14,9 +14,9 @@ import { WeatherLayout, WeatherDetailsLayout } from '../constants/WearableLayout
 @Component
 export struct WeatherDetailsRow {
   // Props (ArkTS requires default values instead of optional syntax)
-  @Prop humidity: number = -1; // Use sentinel value for "not provided"
-  @Prop windSpeed: number = -1; // Use sentinel value for "not provided"
-  @Prop uvIndex: number = -1; // Use sentinel value for "not provided"
+  @Prop humidity: number = -1; // Use sentinel value for 'not provided'
+  @Prop windSpeed: number = -1; // Use sentinel value for 'not provided'
+  @Prop uvIndex: number = -1; // Use sentinel value for 'not provided'
   @Prop temperatureUnit: 'C' | 'F' = 'C';
   @Prop showHumidity: boolean = true;
   @Prop showWind: boolean = true;

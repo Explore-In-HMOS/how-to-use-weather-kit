@@ -25,7 +25,7 @@ struct WeatherCardsShowcase {
   @State currentWordIndex: number = 0;
   
   // Mock data
-  private readonly mockAnnouncement: string = "Good morning! It's partly cloudy with a temperature of 22 degrees. Humidity is at 65 percent with light winds at 12 kilometers per hour.";
+  private readonly mockAnnouncement: string = 'Good morning! It\'s partly cloudy with a temperature of 22 degrees. Humidity is at 65 percent with light winds at 12 kilometers per hour.';
   private readonly mockWords: string[] = this.mockAnnouncement.split(' ').filter(word => word.trim() !== '');
   
   aboutToAppear(): void {
