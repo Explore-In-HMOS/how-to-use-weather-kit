@@ -7,7 +7,7 @@
 
 export enum WeatherCondition {
   SUNNY = 'sunny',
-  PARTLY_CLOUDY = 'partly_cloudy',
+  PARTLY_CLOUDY = 'partlycloudy',
   CLOUDY = 'cloudy',
   RAINY = 'rainy',
   STORMY = 'stormy',
@@ -169,7 +169,7 @@ export interface TTSCardOptions {
 // Weather icon mapping interface (using direct property names for ArkTS compliance)
 export interface WeatherIconMap {
   sunny?: Resource;
-  partly_cloudy?: Resource;
+  partlycloudy?: Resource;
   cloudy?: Resource;
   rainy?: Resource;
   stormy?: Resource;

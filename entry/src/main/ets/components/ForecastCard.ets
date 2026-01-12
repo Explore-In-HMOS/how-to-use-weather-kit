@@ -159,8 +159,12 @@ export struct ForecastCard {
    * Format forecast day name
    */
   private formatForecastDay(date: string, index: number): string {
-    if (index === 0) return 'Today';
-    if (index === 1) return 'Tomorrow';
+    if (index === 0) {
+      return 'Today'
+    };
+    if (index === 1) {
+      return 'Tomorrow'
+    };
     
     try {
       const dateObj = new Date(date);
@@ -229,7 +233,7 @@ export struct ForecastCard {
         case WeatherCondition.SUNNY:
           return this.customIcons.sunny || getWeatherIcon(condition);
         case WeatherCondition.PARTLY_CLOUDY:
-          return this.customIcons.partly_cloudy || getWeatherIcon(condition);
+          return this.customIcons.partlycloudy || getWeatherIcon(condition);
         case WeatherCondition.CLOUDY:
           return this.customIcons.cloudy || getWeatherIcon(condition);
         case WeatherCondition.RAINY:
@@ -288,7 +292,9 @@ export function createForecastCardProps(
  */
 export class ForecastValidator {
   static isValidForecast(forecast: DailyForecast[]): boolean {
-    if (!forecast || forecast.length === 0) return false;
+    if (!forecast || forecast.length === 0) {
+      return false
+    };
     
     return forecast.every(day => 
       day.date && 
@@ -300,7 +306,9 @@ export class ForecastValidator {
   }
   
   static sanitizeForecast(forecast: DailyForecast[]): DailyForecast[] {
-    if (!forecast) return [];
+    if (!forecast) {
+      return []
+    };
     
     return forecast.filter(day => 
       day && 

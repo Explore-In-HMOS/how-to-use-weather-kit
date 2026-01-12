@@ -141,7 +141,9 @@ export struct CurrentWeatherCard {
    * Get formatted feels like temperature
    */
   private getFormattedFeelsLike(): string {
-    if (this.feelsLike === -999) return '';
+    if (this.feelsLike === -999) {
+      return ''
+    };
     
     const temp = this.temperatureUnit === 'F' 
       ? TemperatureConverter.celsiusToFahrenheit(this.feelsLike)
@@ -160,7 +162,7 @@ export struct CurrentWeatherCard {
         case WeatherCondition.SUNNY:
           return this.customIcons.sunny || getWeatherIcon(this.condition);
         case WeatherCondition.PARTLY_CLOUDY:
-          return this.customIcons.partly_cloudy || getWeatherIcon(this.condition);
+          return this.customIcons.partlycloudy || getWeatherIcon(this.condition);
         case WeatherCondition.CLOUDY:
           return this.customIcons.cloudy || getWeatherIcon(this.condition);
         case WeatherCondition.RAINY:
@@ -185,7 +187,9 @@ export struct CurrentWeatherCard {
    * Show if difference is more than 2 degrees
    */
   private shouldShowFeelsLike(): boolean {
-    if (this.feelsLike === -999) return false;
+    if (this.feelsLike === -999) {
+      return false
+    };
     return Math.abs(this.temperature - this.feelsLike) > 2;
   }
   

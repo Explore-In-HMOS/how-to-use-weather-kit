@@ -13,9 +13,32 @@ export class WeatherIconHelper {
   
   constructor(customIconMap?: Partial<WeatherIconMap>, fallbackIcon?: Resource) {
     this.customIcons = customIconMap;
-    this.fallbackIcon = fallbackIcon || $r('app.media.partly_cloudy');
+    this.fallbackIcon = fallbackIcon || $r('app.media.partlycloudy');
   }
-  
+
+  static getWeatherIconExternal(condition: WeatherCondition): Resource {
+    switch (condition) {
+      case WeatherCondition.SUNNY:
+        return $r('app.media.sunny');
+      case WeatherCondition.PARTLY_CLOUDY:
+        return $r('app.media.partlycloudy');
+      case WeatherCondition.CLOUDY:
+        return $r('app.media.cloudy');
+      case WeatherCondition.RAINY:
+        return $r('app.media.rainy');
+      case WeatherCondition.STORMY:
+        return $r('app.media.stormy');
+      case WeatherCondition.SNOWY:
+        return $r('app.media.snowy');
+      case WeatherCondition.FOGGY:
+        return $r('app.media.foggy');
+      case WeatherCondition.WINDY:
+        return $r('app.media.windy');
+      default:
+        return $r('app.media.partlycloudy');
+    }
+  }
+
   /**
    * Get weather icon resource for a given condition
    * Uses switch statement to avoid indexed access
@@ -41,13 +64,15 @@ export class WeatherIconHelper {
    * Get custom icon for condition using switch statement
    */
   private getCustomIcon(condition: WeatherCondition): Resource | undefined {
-    if (!this.customIcons) return undefined;
+    if (!this.customIcons) {
+      return undefined
+    };
     
     switch (condition) {
       case WeatherCondition.SUNNY:
         return this.customIcons.sunny;
       case WeatherCondition.PARTLY_CLOUDY:
-        return this.customIcons.partly_cloudy;
+        return this.customIcons.partlycloudy;
       case WeatherCondition.CLOUDY:
         return this.customIcons.cloudy;
       case WeatherCondition.RAINY:
@@ -73,7 +98,7 @@ export class WeatherIconHelper {
       case WeatherCondition.SUNNY:
         return $r('app.media.sunny');
       case WeatherCondition.PARTLY_CLOUDY:
-        return $r('app.media.partly_cloudy');
+        return $r('app.media.partlycloudy');
       case WeatherCondition.CLOUDY:
         return $r('app.media.cloudy');
       case WeatherCondition.RAINY:
@@ -134,7 +159,7 @@ export class WeatherIconHelper {
         this.customIcons.sunny = icon;
         break;
       case WeatherCondition.PARTLY_CLOUDY:
-        this.customIcons.partly_cloudy = icon;
+        this.customIcons.partlycloudy = icon;
         break;
       case WeatherCondition.CLOUDY:
         this.customIcons.cloudy = icon;

@@ -1,9 +1,3 @@
-/**
- * Weather Cards Library - Showcase Page
- * Demonstrates all weather card components with mock data
- */
-
-
 import { ArcList, ArcListAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
 import { CurrentWeatherCard } from '../components/CurrentWeatherCard';
 import { ForecastCard } from '../components/ForecastCard';
@@ -12,46 +6,22 @@ import { WeatherDetailsRow } from '../components/WeatherDetailsRow';
 import { WeatherLayout } from '../constants/WearableLayout';
 import { WeatherColors, WeatherFonts } from '../constants/WeatherTheme';
 import { WeatherCondition } from '../types/WeatherTypes';
+import { WeatherIconHelper } from '../utils/WeatherIconHelper';
 
-/**
- * Weather Cards Showcase Component
- * Displays all available weather card components with mock data
- */
 @Entry
 @Component
 struct WeatherCardsShowcase {
   @State isLoading: boolean = false;
   @State rotationAngle: number = 0;
   @State currentWordIndex: number = 0;
-  
-  // Mock data
-  private readonly mockAnnouncement: string = 'Good morning! It\'s partly cloudy with a temperature of 22 degrees. Humidity is at 65 percent with light winds at 12 kilometers per hour.';
+  private readonly mockAnnouncement: string =
+    'Good morning! It\'s partly cloudy with a temperature of 22 degrees. Humidity is at 65 percent with light winds at 12 kilometers per hour.';
   private readonly mockWords: string[] = this.mockAnnouncement.split(' ').filter(word => word.trim() !== '');
-  
+
   aboutToAppear(): void {
-    // Simulate word-by-word highlighting animation
     this.startWordAnimation();
   }
-  
-  private startWordAnimation(): void {
-    // Animate word highlighting every 300ms
-    const intervalId = setInterval(() => {
-      if (this.currentWordIndex < this.mockWords.length) {
-        this.currentWordIndex++;
-      } else {
-        // Reset after completion
-        setTimeout(() => {
-          this.currentWordIndex = 0;
-        }, 2000);
-      }
-    }, 300);
-    
-    // Clean up after 2 cycles
-    setTimeout(() => {
-      clearInterval(intervalId);
-    }, 30000);
-  }
-  
+
   build() {
     Column() {
       if (this.isLoading) {
@@ -64,16 +34,16 @@ struct WeatherCardsShowcase {
     .height('100%')
     .backgroundColor(WeatherColors.BACKGROUND)
   }
-  
+
   @Builder
   LoadingView() {
     Column({ space: WeatherLayout.ITEM_SPACING }) {
-      Image($r('app.media.partly_cloudy'))
+      Image($r('app.media.partlycloudy'))
         .width(48)
         .height(48)
         .fillColor(WeatherColors.TEXT_PRIMARY)
         .rotate({ angle: this.rotationAngle })
-      
+
       Text('Loading Weather Cards...')
         .fontSize(WeatherFonts.BODY)
         .fontColor(WeatherColors.TEXT_SECONDARY)
@@ -82,7 +52,7 @@ struct WeatherCardsShowcase {
     .height('100%')
     .justifyContent(FlexAlign.Center)
   }
-  
+
   @Builder
   ShowcaseView() {
     ArcList({}) {
@@ -91,8 +61,6 @@ struct WeatherCardsShowcase {
         this.HeaderCard()
       }
 
-
-      // TTS Announcement Card
       ArcListItem() {
         TTSAnnouncementCard({
           text: this.mockAnnouncement,
@@ -103,8 +71,6 @@ struct WeatherCardsShowcase {
         })
       }
 
-
-      // Current Weather Card
       ArcListItem() {
         CurrentWeatherCard({
           temperature: 22,
@@ -119,8 +85,6 @@ struct WeatherCardsShowcase {
         })
       }
 
-
-      // Forecast Card
       ArcListItem() {
         ForecastCard({
           forecast: [
@@ -167,18 +131,15 @@ struct WeatherCardsShowcase {
           title: '5-Day Forecast'
         })
       }
-      
-      // Weather Details Row (Standalone)
+
       ArcListItem() {
         this.WeatherDetailsCard()
       }
-      
-      // Different Weather Conditions Demo
+
       ArcListItem() {
         this.WeatherConditionsDemo()
       }
-      
-      // Temperature Units Demo
+
       ArcListItem() {
         this.TemperatureUnitsDemo()
       }
@@ -190,17 +151,16 @@ struct WeatherCardsShowcase {
     .width('100%')
     .height('100%')
   }
-  
+
   @Builder
   HeaderCard() {
     Column({ space: 12 }) {
-      // Library Title
       Row({ space: 8 }) {
         Image($r('app.media.sunny'))
           .width(24)
           .height(24)
           .fillColor(WeatherColors.TEXT_PRIMARY)
-        
+
         Text('Weather Kit')
           .fontSize(WeatherFonts.TITLE)
           .fontWeight(FontWeight.Bold)
@@ -208,8 +168,7 @@ struct WeatherCardsShowcase {
       }
       .width('100%')
       .justifyContent(FlexAlign.Start)
-      
-      // Description
+
       Text('Showcase of all available weather card components with mock data for HarmonyOS wearables.')
         .fontSize(WeatherFonts.BODY)
         .fontColor(WeatherColors.TEXT_SECONDARY)
@@ -227,19 +186,17 @@ struct WeatherCardsShowcase {
     .alignItems(HorizontalAlign.Start)
     .justifyContent(FlexAlign.Start)
   }
-  
+
   @Builder
   WeatherDetailsCard() {
     Column({ space: 12 }) {
-      // Card Header
       Text('Weather Details Row')
         .fontSize(WeatherFonts.TITLE)
         .fontWeight(FontWeight.Medium)
         .fontColor(WeatherColors.TEXT_PRIMARY)
         .width('100%')
         .textAlign(TextAlign.Start)
-      
-      // Standalone Weather Details Row
+
       WeatherDetailsRow({
         humidity: 75,
         windSpeed: 8,
@@ -250,8 +207,7 @@ struct WeatherCardsShowcase {
         showUV: true,
         customIcons: {}
       })
-      
-      // Description
+
       Text('Displays humidity, wind speed, and UV index in a horizontal layout optimized for wearables.')
         .fontSize(WeatherFonts.CAPTION)
         .fontColor(WeatherColors.TEXT_SECONDARY)
@@ -266,19 +222,17 @@ struct WeatherCardsShowcase {
     .alignItems(HorizontalAlign.Start)
     .justifyContent(FlexAlign.Start)
   }
-  
+
   @Builder
   WeatherConditionsDemo() {
     Column({ space: 12 }) {
-      // Card Header
       Text('Weather Conditions')
         .fontSize(WeatherFonts.TITLE)
         .fontWeight(FontWeight.Medium)
         .fontColor(WeatherColors.TEXT_PRIMARY)
         .width('100%')
         .textAlign(TextAlign.Start)
-      
-      // Different weather conditions in a compact grid
+
       Column({ space: 8 }) {
         Row({ space: 8 }) {
           this.MiniWeatherCard(WeatherCondition.SUNNY, 28, 'Sunny')
@@ -286,7 +240,7 @@ struct WeatherCardsShowcase {
         }
         .width('100%')
         .justifyContent(FlexAlign.SpaceEvenly)
-        
+
         Row({ space: 8 }) {
           this.MiniWeatherCard(WeatherCondition.SNOWY, -2, 'Snowy')
           this.MiniWeatherCard(WeatherCondition.STORMY, 19, 'Stormy')
@@ -294,7 +248,7 @@ struct WeatherCardsShowcase {
         .width('100%')
         .justifyContent(FlexAlign.SpaceEvenly)
       }
-      
+
       Text('All weather conditions supported with corresponding icons and colors.')
         .fontSize(WeatherFonts.CAPTION)
         .fontColor(WeatherColors.TEXT_SECONDARY)
@@ -307,20 +261,20 @@ struct WeatherCardsShowcase {
     .borderRadius(WeatherLayout.BORDER_RADIUS)
     .alignItems(HorizontalAlign.Start)
   }
-  
+
   @Builder
   MiniWeatherCard(condition: WeatherCondition, temperature: number, label: string) {
     Column({ space: 4 }) {
-      Image(this.getWeatherIcon(condition))
+      Image(WeatherIconHelper.getWeatherIconExternal(condition))
         .width(20)
         .height(20)
         .fillColor(WeatherColors.TEXT_PRIMARY)
-      
+
       Text(`${temperature}°`)
         .fontSize(WeatherFonts.CAPTION)
         .fontColor(WeatherColors.TEXT_PRIMARY)
         .fontWeight(FontWeight.Medium)
-      
+
       Text(label)
         .fontSize(10)
         .fontColor(WeatherColors.TEXT_SECONDARY)
@@ -339,7 +293,7 @@ struct WeatherCardsShowcase {
       radius: 8
     })
   }
-  
+
   @Builder
   TemperatureUnitsDemo() {
     Column({ space: 8 }) {
@@ -350,7 +304,7 @@ struct WeatherCardsShowcase {
         .fontColor(WeatherColors.TEXT_PRIMARY)
         .width('100%')
         .textAlign(TextAlign.Start)
-      
+
       // Side by side comparison
       Row({ space: 8 }) {
         // Celsius
@@ -359,7 +313,7 @@ struct WeatherCardsShowcase {
             .fontSize(WeatherFonts.BODY)
             .fontColor(WeatherColors.TEXT_SECONDARY)
             .fontWeight(FontWeight.Medium)
-          
+
           CurrentWeatherCard({
             temperature: 22,
             condition: WeatherCondition.PARTLY_CLOUDY,
@@ -373,14 +327,13 @@ struct WeatherCardsShowcase {
           })
         }
         .layoutWeight(1)
-        
-        // Fahrenheit
+
         Column({ space: 8 }) {
           Text('Fahrenheit')
             .fontSize(WeatherFonts.BODY)
             .fontColor(WeatherColors.TEXT_SECONDARY)
             .fontWeight(FontWeight.Medium)
-          
+
           CurrentWeatherCard({
             temperature: 22,
             condition: WeatherCondition.PARTLY_CLOUDY,
@@ -396,7 +349,7 @@ struct WeatherCardsShowcase {
         .layoutWeight(1)
       }
       .width('100%')
-      
+
       Text('Automatic temperature unit conversion (22°C = 72°F)')
         .fontSize(WeatherFonts.CAPTION)
         .fontColor(WeatherColors.TEXT_SECONDARY)
@@ -409,28 +362,20 @@ struct WeatherCardsShowcase {
     .borderRadius(WeatherLayout.BORDER_RADIUS)
     .alignItems(HorizontalAlign.Start)
   }
-  
-  // Helper method for weather icons (copied from entry/Index.ets pattern)
-  private getWeatherIcon(condition: WeatherCondition): Resource {
-    switch (condition) {
-      case WeatherCondition.SUNNY:
-        return $r('app.media.sunny');
-      case WeatherCondition.PARTLY_CLOUDY:
-        return $r('app.media.partly_cloudy');
-      case WeatherCondition.CLOUDY:
-        return $r('app.media.cloudy');
-      case WeatherCondition.RAINY:
-        return $r('app.media.rainy');
-      case WeatherCondition.STORMY:
-        return $r('app.media.stormy');
-      case WeatherCondition.SNOWY:
-        return $r('app.media.snowy');
-      case WeatherCondition.FOGGY:
-        return $r('app.media.foggy');
-      case WeatherCondition.WINDY:
-        return $r('app.media.windy');
-      default:
-        return $r('app.media.partly_cloudy');
-    }
+
+  private startWordAnimation(): void {
+    const intervalId = setInterval(() => {
+      if (this.currentWordIndex < this.mockWords.length) {
+        this.currentWordIndex++;
+      } else {
+        setTimeout(() => {
+          this.currentWordIndex = 0;
+        }, 2000);
+      }
+    }, 300);
+
+    setTimeout(() => {
+      clearInterval(intervalId);
+    }, 30000);
   }
 }

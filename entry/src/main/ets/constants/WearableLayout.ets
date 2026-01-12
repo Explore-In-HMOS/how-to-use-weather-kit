@@ -86,20 +86,32 @@ export class WearableResponsiveLayout {
   
   // Get responsive values based on screen size
   static getCardHeight(screenSize: number): number {
-    if (screenSize < 1.2) return WearableResponsiveLayout.SMALL_CARD_HEIGHT;
-    if (screenSize > 1.6) return WearableResponsiveLayout.LARGE_CARD_HEIGHT;
+    if (screenSize < 1.2) {
+      return WearableResponsiveLayout.SMALL_CARD_HEIGHT
+    };
+    if (screenSize > 1.6) {
+      return WearableResponsiveLayout.LARGE_CARD_HEIGHT
+    };
     return WearableResponsiveLayout.MEDIUM_CARD_HEIGHT;
   }
   
   static getCardPadding(screenSize: number): number {
-    if (screenSize < 1.2) return WearableResponsiveLayout.SMALL_CARD_PADDING;
-    if (screenSize > 1.6) return WearableResponsiveLayout.LARGE_CARD_PADDING;
+    if (screenSize < 1.2) {
+      return WearableResponsiveLayout.SMALL_CARD_PADDING
+    };
+    if (screenSize > 1.6) {
+      return WearableResponsiveLayout.LARGE_CARD_PADDING
+    };
     return WearableResponsiveLayout.MEDIUM_CARD_PADDING;
   }
   
   static getSpacing(screenSize: number): number {
-    if (screenSize < 1.2) return WearableResponsiveLayout.SMALL_SPACING;
-    if (screenSize > 1.6) return WearableResponsiveLayout.LARGE_SPACING;
+    if (screenSize < 1.2) {
+      return WearableResponsiveLayout.SMALL_SPACING
+    };
+    if (screenSize > 1.6) {
+      return WearableResponsiveLayout.LARGE_SPACING
+    };
     return WearableResponsiveLayout.MEDIUM_SPACING;
   }
 }
@@ -210,9 +222,15 @@ export class LayoutCalculator {
   ): number {
     let height = 0;
     
-    if (hasHeader) height += 40;
-    if (hasContent) height += Math.max(contentLines * 20, 60);
-    if (hasFooter) height += 32;
+    if (hasHeader) {
+      height += 40
+    };
+    if (hasContent) {
+      height += Math.max(contentLines * 20, 60)
+    };
+    if (hasFooter) {
+      height += 32
+    };
     
     return Math.max(height + WeatherLayout.CARD_PADDING * 2, 120);
   }

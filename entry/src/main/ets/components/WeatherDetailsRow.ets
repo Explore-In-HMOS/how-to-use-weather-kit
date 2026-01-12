@@ -127,7 +127,9 @@ export struct WeatherDetailsRow {
    * Format wind speed with appropriate unit
    */
   private getFormattedWindSpeed(): string {
-    if (this.windSpeed === -1) return '';
+    if (this.windSpeed === -1) {
+      return ''
+    };
     
     // For now, assuming input is in km/h
     // Could add mph conversion if needed
@@ -148,9 +150,15 @@ export struct WeatherDetailsRow {
    */
   private getVisibleColumnCount(): number {
     let count = 0;
-    if (this.showHumidity && this.humidity !== -1) count++;
-    if (this.showWind && this.windSpeed !== -1) count++;
-    if (this.showUV && this.uvIndex !== -1) count++;
+    if (this.showHumidity && this.humidity !== -1) {
+      count++
+    };
+    if (this.showWind && this.windSpeed !== -1) {
+      count++
+    };
+    if (this.showUV && this.uvIndex !== -1) {
+      count++
+    };
     return count;
   }
 }
